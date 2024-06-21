@@ -2,10 +2,12 @@ body{
     background-color: black;
 }
 
-h1{
+#verde{
     color: #5ECBAE;
 }
-
+#vermelho{
+    color: #E50914;
+}
 button{
     color: white;
     background-color: #5ECBAE;
