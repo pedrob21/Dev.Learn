@@ -8,12 +8,39 @@ body{
 #vermelho{
     color: #E50914;
 }
+#título{
+    display: flex;
+    text-align: center;
+    height: 100%;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+#final{
+    color: white;
+    display: flex;
+    height: 100%;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+#la{
+    color:white;
+}
+
 button{
     color: white;
     background-color: #5ECBAE;
     border: 0px;
-    border-radius: 25px;
+    border-radius: 30px;
 }
+#pesquisar{
+font-size: 15px;
+}
+
 
 .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
     --bs-gutter-x: 1.5rem;
