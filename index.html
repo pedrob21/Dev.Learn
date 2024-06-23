@@ -15,7 +15,7 @@
   <h2 id="la"> Filmes e séries </h2>
   <form onsubmit="event.preventDefault(); Pesquisar();">
     <input id="pesquisar" placeholder="Digite o nome do Filme ou da Série" />
-    <button class="a">Pesquisar</button>
+    <button class="a"onclick="Pesquisar()">Pesquisar</button>
   </form>
   <h2 id="final">
     Nos acompanhe!
@@ -28,7 +28,6 @@
    <form action="https://imdb-top-100-movies.p.rapidapi.com/search" method="GET" onsubmit="event.preventDefault(); Pesquisar()">
     <input id="pesquisar" name="term" placeholder="Digite o nome do Filme ou da Série" required>
     <input type="hidden" name="type" value="title">
-    <button type="submit">Pesquisar</button>
     </form>
     <div class="filmes"></div>
     <script>
@@ -38,7 +37,7 @@
           alert('Digite o nome do filme ou série para pesquisar.');
           return;
         }
-        // Lógica de busca e manipulação dos resultados aqui (opcional se usar `action` e `method` no form).
+       
       }
     </script>
 </body>
