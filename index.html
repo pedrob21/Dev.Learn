@@ -13,33 +13,33 @@
     <span id="verde">USP</span><span id="vermelho">FLIX</span>
   </h1>
   <h2 id="la"> Filmes e séries </h2>
-  <form>
-    <input id="pesquisar" placeholder="Digite o nome do Filme ou da Série"/>
-    <button class="a" onclick="Pesquisar()">Pesquisar</button>
+  <form onsubmit="event.preventDefault(); Pesquisar();">
+    <input id="pesquisar" placeholder="Digite o nome do Filme ou da Série" />
+    <button class="a">Pesquisar</button>
   </form>
-  <h2 id="final"> 
+  <h2 id="final">
     Nos acompanhe!
   </h2>
   <h3 id="catálogo">
     Tenha acesso ao nosso catálogo pelo celular!
   </h3>
   <div class="filmes"></div>
-  <script src="script.js"></script>
   <script>
-      async function Pesquisar() {
-        const inputValor = document.getElementById('pesquisar').value.trim();
-        if (inputValor === '') {
-          alert('Digite o nome do filme ou série para pesquisar.');
-          return;
-        }
-    
-        const url = `https://imdb-top-100-movies.p.rapidapi.com/search?type=title&term=${encodeURIComponent(inputValor)}`;
-    
-        const xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
-    
-        xhr.addEventListener('readystatechange', function () {
-          if (this.readyState === this.DONE) {
+    async function Pesquisar() {
+      const inputValor = document.getElementById('pesquisar').value.trim();
+      if (inputValor === '') {
+        alert('Digite o nome do filme ou série para pesquisar.');
+        return;
+      }
+
+      const url = `https://imdb-top-100-movies.p.rapidapi.com/search?type=title&term=${encodeURIComponent(inputValor)}`;
+
+      const xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
+
+      xhr.addEventListener('readystatechange', function () {
+        if (this.readyState === this.DONE) {
+          if (this.status === 200) {
             const response = JSON.parse(this.responseText);
             console.log(response);
             const filmesDiv = document.querySelector('.filmes');
@@ -54,14 +54,21 @@
             } else {
               filmesDiv.textContent = 'Nenhum resultado foi encontrado.';
             }
+          } else {
+            console.error('Erro na requisição:', this.status);
+            alert('Ocorreu um erro na requisição. Por favor, tente novamente mais tarde.');
           }
-        });
-          xhr.open('GET', 'https://imdb-top-100-movies.p.rapidapi.com/');
-          xhr.setRequestHeader('x-rapidapi-key', 'b9715b912amsh8c346f5f7c302b3p1a80d4jsn47b14aaea364');
-          xhr.setRequestHeader('x-rapidapi-host', 'imdb-top-100-movies.p.rapidapi.com');
-          
-          xhr.send(data);
-      </script>
+        }
+      });
+
+      xhr.open('GET', url);
+      xhr.setRequestHeader('x-rapidapi-key', 'b9715b912amsh8c346f5f7c302b3p1a80d4jsn47b14aaea364');
+      xhr.setRequestHeader('x-rapidapi-host', 'imdb-top-100-movies.p.rapidapi.com');
+
+      xhr.send();
+    }
+  </script>
 </body>
 
 </html>
+
