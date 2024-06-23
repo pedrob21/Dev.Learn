@@ -24,6 +24,24 @@
       Tenha acesso ao nosso catálogo pelo celular!
     </h3>
     <div class="filmes"></div>
-    <script scr="script.js"></script>
+    <script scr="script.js">
+       async function Pesquisar() {
+          const data = null;
+
+          const xhr = new XMLHttpRequest();
+          xhr.withCredentials = true;
+          
+          xhr.addEventListener('readystatechange', function () {
+          	if (this.readyState === this.DONE) {
+          		console.log(this.responseText);
+          	}
+          });
+          
+          xhr.open('GET', 'https://imdb-top-100-movies.p.rapidapi.com/');
+          xhr.setRequestHeader('x-rapidapi-key', 'Sign Up for Key');
+          xhr.setRequestHeader('x-rapidapi-host', 'imdb-top-100-movies.p.rapidapi.com');
+          
+          xhr.send(data);
+    </script>
 </body>
 </html>
