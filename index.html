@@ -26,37 +26,37 @@
   <div class="filmes"></div>
   <script src="script.js"></script>
   <script>
-  async function Pesquisar() {
-    const inputValor = document.getElementById('pesquisar').value.trim();
-    if (inputValor === '') {
-      alert('Digite o nome do filme ou série para pesquisar.');
-      return;
-    }
-
-    const url = `https://imdb-top-100-movies.p.rapidapi.com/search?type=title&term=${encodeURIComponent(inputValor)}`;
-
-    const xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
-
-    xhr.addEventListener('readystatechange', function () {
-      if (this.readyState === this.DONE) {
-        const response = JSON.parse(this.responseText);
-        console.log(response);
-        const filmesDiv = document.querySelector('.filmes');
-        filmesDiv.innerHTML = '';
-        if (response.results && response.results.length > 0) {
-          response.results.forEach(filme => {
-            const titulo = filme.title;
-            const elementoFilme = document.createElement('p');
-            elementoFilme.textContent = titulo;
-            filmesDiv.appendChild(elementoFilme);
-          });
-        } else {
-          filmesDiv.textContent = 'Nenhum resultado foi encontrado.';
+      async function Pesquisar() {
+        const inputValor = document.getElementById('pesquisar').value.trim();
+        if (inputValor === '') {
+          alert('Digite o nome do filme ou série para pesquisar.');
+          return;
         }
-      }
-    });
-</script>
+    
+        const url = `https://imdb-top-100-movies.p.rapidapi.com/search?type=title&term=${encodeURIComponent(inputValor)}`;
+    
+        const xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+    
+        xhr.addEventListener('readystatechange', function () {
+          if (this.readyState === this.DONE) {
+            const response = JSON.parse(this.responseText);
+            console.log(response);
+            const filmesDiv = document.querySelector('.filmes');
+            filmesDiv.innerHTML = '';
+            if (response.results && response.results.length > 0) {
+              response.results.forEach(filme => {
+                const titulo = filme.title;
+                const elementoFilme = document.createElement('p');
+                elementoFilme.textContent = titulo;
+                filmesDiv.appendChild(elementoFilme);
+              });
+            } else {
+              filmesDiv.textContent = 'Nenhum resultado foi encontrado.';
+            }
+          }
+        });
+      </script>
 </body>
 
 </html>
