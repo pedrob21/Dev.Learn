@@ -13,10 +13,9 @@
     <span id="verde">USP</span><span id="vermelho">FLIX</span>
   </h1>
   <h2 id="la"> Filmes e séries </h2>
-  <form id="formPesquisa" action="https://imdb-top-100-movies.p.rapidapi.com/search" method="GET">
-    <label for="pesquisar">Digite o nome do Filme ou da Série:</label>
-    <input type="text" id="pesquisar" name="term" placeholder="Digite o nome do Filme ou da Série" required>
-    <button type="submit">Pesquisar</button>
+  <form id="form-pesquisa" onsubmit="event.preventDefault(); Pesquisar();">
+      <input id="pesquisar" placeholder="Digite o nome do Filme ou da Série" required />
+      <button type="submit">Pesquisar</button>
   </form>
   <h2 id="final">
     Nos acompanhe!
@@ -24,62 +23,18 @@
   <h3 id="catálogo">
     Tenha acesso ao nosso catálogo pelo celular!
   </h3>
-  <div class="filmes"></div>
   <script src="script.js"></script>
-   <form action="https://imdb-top-100-movies.p.rapidapi.com/search" method="GET" onsubmit="event.preventDefault(); Pesquisar()">
-    <input id="pesquisar" name="term" placeholder="Digite o nome do Filme ou da Série" required>
-    <input type="hidden" name="type" value="title">
-    </form>
     <div class="filmes"></div>
     <script>
-  const formPesquisa = document.getElementById('formPesquisa');
-  formPesquisa.addEventListener('submit', async function(event) {
-    event.preventDefault(); // Prevenir o comportamento padrão de envio do formulário
-
-    const inputValor = document.getElementById('pesquisar').value.trim();
-    if (inputValor === '') {
-      alert('Digite o nome do filme ou série para pesquisar.');
-      return;
-    }
-
-    const url = `https://imdb-top-100-movies.p.rapidapi.com/search?type=title&term=${encodeURIComponent(inputValor)}`;
-
-    try {
-      const response = await fetch(url, {
-        headers: {
-          'x-rapidapi-key': 'b9715b912amsh8c346f5f7c302b3p1a80d4jsn47b14aaea364',
-          'x-rapidapi-host': 'imdb-top-100-movies.p.rapidapi.com'
+      async function Pesquisar() {
+        const inputValor = document.getElementById('pesquisar').value.trim();
+        if (inputValor === '') {
+          alert('Digite o nome do filme ou série para pesquisar.');
+          return;
         }
-      });
 
-      if (!response.ok) {
-        throw new Error('Erro ao buscar filmes.');
       }
-
-      const data = await response.json();
-      console.log(data);
-
-      const filmesDiv = document.querySelector('.filmes');
-      filmesDiv.innerHTML = '';
-
-      if (data.results && data.results.length > 0) {
-        data.results.forEach(filme => {
-          const titulo = filme.title;
-          const elementoFilme = document.createElement('p');
-          elementoFilme.textContent = titulo;
-          filmesDiv.appendChild(elementoFilme);
-        });
-      } else {
-        filmesDiv.textContent = 'Nenhum resultado foi encontrado.';
-      }
-
-    } catch (error) {
-      console.error('Erro na requisição:', error);
-      alert('Ocorreu um erro na requisição. Por favor, tente novamente mais tarde.');
-    }
-  });
-</script>
+    </script>
 </body>
 
 </html>
-
