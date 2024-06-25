@@ -13,28 +13,55 @@
     <span id="verde">USP</span><span id="vermelho">FLIX</span>
   </h1>
   <h2 id="la"> Filmes e séries </h2>
+
   <form id="form-pesquisa" onsubmit="event.preventDefault(); Pesquisar();">
-      <input id="pesquisar" placeholder="Digite o nome do Filme ou da Série" required />
-      <button type="submit"> onclick="Pesquisar()">Pesquisar</button>
+    <input id="pesquisar" placeholder="Digite o nome do Filme ou da Série" required />
+    <button type="submit">Pesquisar</button>
   </form>
+
+  <div id="resultados">
+  </div>
+
   <h2 id="final">
     Nos acompanhe!
   </h2>
   <h3 id="catálogo">
     Tenha acesso ao nosso catálogo pelo celular!
   </h3>
-  <script src="script.js"></script>
-    <div class="filmes"></div>
-    <script>
-      async function Pesquisar() {
-        const inputValor = document.getElementById('pesquisar').value.trim();
-        if (inputValor === '') {
-          alert('Digite o nome do filme ou série para pesquisar.');
-          return;
-        }
 
+  <script>
+    const options = {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxZjhlYjc5Mjg1YjAyYTEwZTcyZmIwMWZmMjU4MzQ4NCIsIm5iZiI6MTcxOTE2MjYyNi44MTM2NTIsInN1YiI6IjY2Nzg1NjI5NzZjNzg4MDZmMDU2M2FiNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.a092gdD-cc8bz2fs_iwz1tCY2tSUPcOk5gQB60YXqu4'
       }
-    </script>
-</body>
+    };
 
+    async function Pesquisar() {
+      const textoDigitado = document.getElementById('pesquisar').value;
+      const url = `https://api.themoviedb.org/3/search/movie?query=${textoDigitado}&include_adult=false&language=en-US&page=1`;
+
+      try {
+        const busca = await fetch(url, options);
+        const filmesInfos = await busca.json();
+        console.log(filmesInfos);
+        exibirFilmes(filmesInfos);
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+
+    function exibirFilmes(filmesInfos) {
+      const listaFilmes = filmesInfos.results;
+      const filme = listaFilmes[0]; 
+      const filmesinfo = document.getElementById('resultados');
+     filmesinfo.innerHTML = `
+        <h3 id="filme-titulo">${filme.title}</h3>
+        <img id="poster" src="https://image.tmdb.org/t/p/w500${filme.poster_path}" alt="${filme.title} Poster">
+        <p id="filme-sinopse">${filme.overview}</p>
+      `;
+    }
+  </script>
+
+</body>
 </html>
