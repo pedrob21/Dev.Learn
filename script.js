@@ -1,42 +1,19 @@
-async function Pesquisar() {
-  const inputValor = document.getElementById('pesquisar').value.trim();
-  if (inputValor === '') {
-    alert('Digite o nome do filme ou série para pesquisar.');
-    return;
+const url = "https://api.themoviedb.org/3/search/movie?placeholder=&include_adult=false&language=en-US&page=1";
+const options = {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxZjhlYjc5Mjg1YjAyYTEwZTcyZmIwMWZmMjU4MzQ4NCIsIm5iZiI6MTcxOTE2MjYyNi44MTM2NTIsInN1YiI6IjY2Nzg1NjI5NzZjNzg4MDZmMDU2M2FiNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.a092gdD-cc8bz2fs_iwz1tCY2tSUPcOk5gQB60YXqu4'
   }
+};
 
-  const url = "https://imdb-top-100-movies.p.rapidapi.com/search?type=title&term=${encodeURIComponent(inputValor)}";
-
-  const xhr = new XMLHttpRequest();
-  xhr.withCredentials = true;
-
-  xhr.addEventListener('readystatechange', function () {
-    if (this.readyState === this.DONE) {
-      if (this.status === 200) {
-        const response = JSON.parse(this.responseText);
-        console.log(response);
-        const filmesDiv = document.querySelector('.filmes');
-        filmesDiv.innerHTML = '';
-        if (response.results && response.results.length > 0) {
-          response.results.forEach(filme => {
-            const titulo = filme.title;
-            const elementoFilme = document.createElement('p');
-            elementoFilme.textContent = titulo;
-            filmesDiv.appendChild(elementoFilme);
-          });
-        } else {
-          filmesDiv.textContent = 'Nenhum resultado foi encontrado.';
-        }
-      } else {
-        console.error('Erro na requisição:', this.status);
-        alert('Ocorreu um erro na requisição. Por favor, tente novamente mais tarde.');
-      }
-    }
-  });
-
-  xhr.open('GET', url);
-  xhr.setRequestHeader('x-rapidapi-key', 'b9715b912amsh8c346f5f7c302b3p1a80d4jsn47b14aaea364');
-  xhr.setRequestHeader('x-rapidapi-host', 'imdb-top-100-movies.p.rapidapi.com');
-
-xhr.send();
+async function Pesquisar() {
+  try {console.log('aq foi')
+    const response = await fetch(url, options);
+    const result = await response.text();
+    console.log(result);
+  } catch (error) {
+    console.error(error);
+  }
 }
+
+Pesquisar();
