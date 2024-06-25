@@ -9,10 +9,22 @@
 </head>
 
 <body>
+
+<div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <a href="https://www.icmc.usp.br/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/LOGO_ICMC_CMYK.png/320px-LOGO_ICMC_CMYK.png" class="icmc">
+        </a>
+    </header>
+</div>
+
+
   <h1 id="título">
     <span id="verde">USP</span><span id="vermelho">FLIX</span>
   </h1>
-  <h2 id="la"> Filmes e séries </h2>
+    <h2 id="fs">
+        <span id="verde">Filmes</span><span id="vermelho">e</span><span id="verde">séries</span> 
+    </h2>
 
   <form id="form-pesquisa" onsubmit="event.preventDefault(); Pesquisar();">
     <input id="pesquisar" placeholder="Digite o nome do Filme ou da Série" required />
@@ -23,8 +35,9 @@
   </div>
 
   <h2 id="final">
-    Nos acompanhe!
+    <span id="verde">Nos acompanhe</span><span id="vermelho">!</span>
   </h2>
+  
   <h3 id="catálogo">
     Tenha acesso ao nosso catálogo pelo celular!
   </h3>
@@ -61,6 +74,7 @@
         <p id="filme-sinopse">${filme.overview}</p>
       `;
     }
+
   </script>
 
 </body>
