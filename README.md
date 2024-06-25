@@ -1,1 +1,1 @@
-Código para criação de site com a API do Imdb
+Site de para busca de filmes e séries utilizando a API do Imdb
