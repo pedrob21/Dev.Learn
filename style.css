@@ -1,68 +1,82 @@
 body{
     background-color: black;
 }
-
 #verde{
     color: #5ECBAE;
 }
+
 #vermelho{
-    color: #E50914;
+    color: red;
 }
+
 #título{
     display: flex;
-    text-align: center;
-    height: 100%;
-    margin: 0;
     justify-content: center;
-    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
 }
-#final{
-    color: white;
+
+.icmc{
+    width: 100px;
+}
+
+form{
     display: flex;
-    height: 100%;
-    margin: 0;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-}
-
-#la{
-    color:white;
-}
-
-button{
-    color: white;
-    background-color: #5ECBAE;
-    border: 0px;
-    border-radius: 30px;
-}
-#pesquisar{
-font-size: 15px;
-}
-
-
-.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
-    --bs-gutter-x: 1.5rem;
-    --bs-gutter-y: 0;
-    width: 100%;
-    padding-right: calc(var(--bs-gutter-x)* .5);
-    padding-left: calc(var(--bs-gutter-x)* .5);
-    margin-right: auto;
-    margin-left: auto;
-}
-
-.text-center {
-    text-align: center !important;
+    justify-content: center;
 }
 
 input{
-    width: 50%;
+    height: 30px;
     border-radius: 25px;
 }
 
 button{
-    margin-top: 20px;
-    width: 10%;
-    font-size: 15px;
+    border-radius: 25px;
+    background-color: #5ECBAE;
+}
+.container {
+    text-align: center;
+}
+
+#fs #vermelho {
+    margin-right: 5px;
+    margin-left: 5px; /* Adicione margem à esquerda para espaçamento consistente */
+}
+
+h2{
+    color: #5ECBAE;
+    display: flex;
+    justify-content: center;
+}
+
+#catálogo{
+    color: #5ECBAE;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+#filme-titulo{
+    color: #5ECBAE;
+    font-size: 50px;
+    margin: 50px;
+}
+
+#poster{
+    height: 500px;
+    margin: 20px;
+}
+
+#filme-sinopse{
+    color: white;
+    height: 200px;
+    margin: 20px;
+}
+
+#resultados {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
